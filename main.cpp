@@ -78,12 +78,8 @@ int main() {
     xbee.printf("GO STRAIGHT. parameter: 100\r\n");
     status = 1;
     car.goStraight(-140,-90);
-    //while(encoder1.get_cm()<100) wait_ms(50);
     xbee.printf("encoder : %f %f\r\n",encoder0.get_cm(),encoder1.get_cm());
-    //encoder0.reset();
-    //encoder1.reset();
     wait(6.0);
-
     xbee.printf("STRAIGHT STOP\r\n");
     car.stop();
 
@@ -91,8 +87,7 @@ int main() {
     xbee.printf("ROTATE LEFT parameter: -90,-0,1.5 \r\n");
     encoder1.reset();
     car.goStraight(-90,0);
-    //while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(1.5);
+    wait(1.3);
     xbee.printf("encoders : %f %f\r\n",encoder0.get_cm(),encoder1.get_cm());
     
     
@@ -103,16 +98,14 @@ int main() {
     // go for the ID stuff
     xbee.printf("GO STRAIGHT Parameter: -60 ,-120,3\r\n");
     car.goStraight(-140,-90);
-    //while(encoder1.get_cm()<100) wait_ms(50);
-    wait(3.0);
+    wait(4.5);
     xbee.printf("STOP\r\n");
     car.stop();
-    encoder1.reset();
-        // turn right
+    
+    
     xbee.printf("turn right: -100\r\n");
     car.goStraight(0,-100);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(1.5);
+    wait(1.3);
     xbee.printf("STOP\r\n");
     car.stop();
     encoder1.reset();
@@ -131,68 +124,58 @@ int main() {
         }
     }
     // reverse parking
-    xbee.printf("reverse right 0 100 1.5");
+    xbee.printf("reverse right 0 100 1.3");
     car.goStraight(0,100);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(1.5);
+    wait(1.3);
     xbee.printf("STOP\r\n");
     car.stop();
 
     xbee.printf("back 90 120 3");
     car.goStraight(90,120);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
     wait(3.0);
     xbee.printf("STOP\r\n");
     car.stop();
 
-    xbee.printf("reverse left 100 0 1.5");
+    xbee.printf("reverse left 100 0 1.3");
     car.goStraight(100,0);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(1.5);
+    wait(1.3);
     xbee.printf("STOP\r\n");
     car.stop();
 
-    xbee.printf("back 90 120 3");
+    xbee.printf("back 90 120 2");
     car.goStraight(90,120);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(2.0);
+    wait(1.5);
     xbee.printf("STOP\r\n");
     car.stop();
 
     xbee.printf("halt");
     wait(3.0);
 
-    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,3\r\n");
-    car.goStraight(-120,-90);
-    //while(encoder1.get_cm()<100) wait_ms(50);
-    wait(3.0);
+    xbee.printf("GO STRAIGHT Parametr: -120 ,-90,1\r\n");    car.goStraight(-120,-90);
+    wait(1.5);
+    xbee.prntf("STOP\r\n");
+    car.stop();
+
+    xbee.printf("turn right: -100 , 2.6\r\n");
+    car.goStraight(0,-100);
+    wait(2.6);
     xbee.printf("STOP\r\n");
     car.stop();
 
-    xbee.printf("turn right: -100 , 3\r\n");
-    car.goStraight(0,-100);
-    // while(encoder1.get_cm()<10.7*2*PI/4) wait_ms(50);
-    wait(3.0);
+    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
+    car.goStraight(-120,-90);
+    wait(4.0);
     xbee.printf("STOP\r\n");
     car.stop();
 
 // ////////// MISSION 2 ///////////////////
 
-    car.turn(100,0.1);
-    encoder0.reset();
-    while(encoder0.get_cm()<10.2*2*PI/4) wait_ms(50);
+    xbee.printf("turn right: -100 , 1.3\r\n");
+    car.goStraight(0,-100);
+    wait(1.3);
+    xbee.printf("STOP\r\n");
     car.stop();
-
-    encoder1.reset();
-    car.goStraight(100);
-    while(encoder1.get_cm()<25) wait_ms(50);
-    car.stop();
-
-    car.turn(100,0.1);
-    encoder0.reset();
-    while(encoder0.get_cm()<10.2*2*PI/4) wait_ms(50);
-    car.stop();
-
+    /*
     int find = 0;
     int loop = 0;
     int i;
@@ -215,53 +198,9 @@ int main() {
             //car.back(100,0.1);
             while(encoder1.get_cm()<10.7*2*PI/4&&encoder0.get_cm()<10.7*2*PI/4) wait_ms(50);
             car.stop();
-
-            /*            
-            encoder1.reset();
-            car.goStraight(100);
-            while(encoder1.get_cm()<45) wait_ms(50);
-            car.stop();
-            wait_ms(1000);
-            encoder1.reset();
-            car.goStraight(-100);
-            while(encoder1.get_cm()<25) wait_ms(50);
-            car.stop();
-            car.turn(-100,-0.1);
-            encoder1.reset();
-            while(encoder1.get_cm()<5*2*PI/4) wait_ms(50);
-            car.stop();
-            encoder1.reset();
-            car.goStraight(-100);
-            while(encoder1.get_cm()<15) wait_ms(50);
-            car.stop();
-            car.turn(-100,0.1);
-            encoder0.reset();
-            while(encoder0.get_cm()<5*2*PI/4) wait_ms(50);
-            car.stop();*/
         }
-        // output object
     }
-    car.turn(-100,0.1);
-    encoder0.reset();
-    while(encoder0.get_cm()<10.2*2*PI/4) wait_ms(50);
-    car.stop();
-
-    encoder1.reset();
-    car.goStraight(100);
-    while(encoder1.get_cm()<50) wait_ms(50);
-    car.stop();
-
-    car.turn(100,0.1);
-    encoder0.reset();
-    while(encoder0.get_cm()<10.2*2*PI/4) wait_ms(50);
-    car.stop();
-
-    encoder1.reset();
-    car.goStraight(100);
-    while(encoder1.get_cm()<150) wait_ms(50);
-    car.stop();
-
-
+    */
     xbee.printf("end\r\n");
 
 }
