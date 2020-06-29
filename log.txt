@@ -1,0 +1,332 @@
+xbee readyGO STRAIGHT. parameter: -130,80,7
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STRAIGHT STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second becausROTATe I cE STOan.
+
+P
+
+GO STRAIGHT Parameter: -130 ,-90,8
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+turn right: 0,-100,1.5
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+ANSWER is 4
+
+reverse right 0 140 1.5hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+back 90 120 2hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+reverse left 100 0 1.6hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+back 90 120 1.5hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+halthello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+GO STRAIGHT Parameter: -120 ,-90,1.5
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+U turn right: -10,-100 , 3.3
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+GO STRAIGHT Parameter: -120 ,-90,6
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+MISSION 1 END
+
+turn right: -100 , 1.5
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+GO STRAIGHT Parameter: -120 ,-90,4
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+turn right: -100 , 1.4
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+GO STRAIGHT Parameter: -120 ,-90,4
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+BACK Parameter: -120 ,-90,
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+reverse right 0 140 1.5hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+GO STRAIGHT Parameter: -120 ,-90,4
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+RIGHT Parameter: -120 ,-90,4
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+GO STRAIGHT Parameter: -120 ,-90,8
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+STOP
+
+end
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
+hello! I've been sending this every second because I can.
+
