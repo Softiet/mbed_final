@@ -2,10 +2,10 @@
     {
         "module": "[fill]",
         "size": {
-            ".text": 222,
+            ".text": 225,
             ".data": 11,
-            ".bss": 37,
-            ".text-delta": -3,
+            ".bss": 33,
+            ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -24,10 +24,10 @@
     {
         "module": "[lib]/gcc.a",
         "size": {
-            ".text": 3336,
+            ".text": 3876,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 540,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -57,7 +57,7 @@
     {
         "module": "bbcar/bbcar",
         "size": {
-            ".text": 1157,
+            ".text": 919,
             ".data": 0,
             ".bss": 444,
             ".text-delta": 0,
@@ -79,10 +79,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 2350,
-            ".data": 0,
-            ".bss": 740,
-            ".text-delta": -250,
+            ".text": 2739,
+            ".data": 8,
+            ".bss": 736,
+            ".text-delta": 224,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -101,10 +101,10 @@
     {
         "module": "mbed-os/drivers",
         "size": {
-            ".text": 1910,
+            ".text": 2280,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 264,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -137,7 +137,7 @@
             ".text": 8413,
             ".data": 261,
             ".bss": 437,
-            ".text-delta": -123,
+            ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -159,7 +159,7 @@
             ".text": 14282,
             ".data": 36,
             ".bss": 310,
-            ".text-delta": 0,
+            ".text-delta": 52,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -168,8 +168,8 @@
         "summary": {
             "static_ram": 11160,
             "static_ram_delta": 0,
-            "total_flash": 85705,
-            "total_flash_delta": -376
+            "total_flash": 86777,
+            "total_flash_delta": 1080
         }
     }
 ]

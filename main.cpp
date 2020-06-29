@@ -14,7 +14,7 @@ Ticker encoder_ticker_right;
 PwmOut pin8(D8), pin9(D9);
 DigitalIn pin3(D3);
 DigitalIn pin4(D4);
-DigitalInOut ping1(D10);
+DigitalInOut pin10(D10);
 BBCar car(pin8, pin9, servo_ticker);
 
 
@@ -26,181 +26,202 @@ DigitalOut greenLED(LED2);
 DigitalOut blueLED(LED3);
 
 
-float state[3] = {0};
-float Kp = 0, Ki = 0, Kd = 0;
-float a0 = 0, a1 = 0, a2 = 0;
-void pid_init(){
-    state[0] = 0;
-    state[1] = 0;
-    state[2] = 0;
-    a0 = Kp + Ki + Kd;
-    a1 = (-Kp) - 2*Kd;
-    a2 = Kd;
+
+int manipulate(int speed1, int speed2, float wait_time){
+    car.goStraight(speed1,speed2);
+    wait(wait_time);
+    car.stop();
+    wait(1);
 }
 
-float pid_process(float in){
-    int out = in*a0 + a1*state[0] + a2*state[1] + state[2];
-    //update state
-    state[1] = state[0];
-    state[0] = in;
-    state[2] = out;
-    return out;
-}
-
-int status = 0;
 EventQueue queue(32 * EVENTS_EVENT_SIZE);
 Thread t;
 
+int status;
 void status_print(){
-    if(status == 0){
-        xbee.printf("stop");    
-    }
-    else if(status == 1){
-        xbee.printf("straight");
-    }
+    xbee.printf("hello I've been sending cause i can\r\n");
 }
+
+int str_par1 = -80;
+int str_par2 = -70;
 
 int main() {
     redLED = 1;
     greenLED = 1;
     blueLED = 1;
+    float buffer = 0;
+
+
     // printf("SYSTEM INITIALIZED\r\n");
+    parallax_ping  ping1(pin10);
+
     xbee.printf("xbee ready");
 
     queue.call_every(1000, status_print);
     t.start(callback(&queue, &EventQueue::dispatch_forever));
     
-    parallax_encoder encoder0(pin3, encoder_ticker_left);
-    parallax_encoder encoder1(pin4, encoder_ticker_right);
-    encoder0.reset();
-    encoder1.reset();
 
-    xbee.printf("GO STRAIGHT. parameter: 100\r\n");
-    status = 1;
-    car.goStraight(-140,-90);
-    xbee.printf("encoder : %f %f\r\n",encoder0.get_cm(),encoder1.get_cm());
-    wait(6.0);
+    xbee.printf("GO STRAIGHT. parameter: -130,80,7\r\n");
+    //status = 1;
+    manipulate(str_par1,str_par2,8.5);
     xbee.printf("STRAIGHT STOP\r\n");
+    
+    /*
+    while(1){
+        if(buffer > 20){
+            redLED = 1;
+        }
+        else{
+            redLED = 0;
+        }
+        buffer = float(ping1);
+        wait(0.1);
+    }
+    */
+    /*
+    car.goStraight(str_par1,str_par2);
+    buffer = float(ping1);
+    while(buffer > 20){
+        wait(0.2);
+        buffer = ping1;
+        printf("%f",buffer);
+    }
     car.stop();
+    */
 
-    //rotate(90,'r');
-    xbee.printf("ROTATE LEFT parameter: -90,-0,1.5 \r\n");
-    encoder1.reset();
-    car.goStraight(-90,0);
-    wait(1.3);
-    xbee.printf("encoders : %f %f\r\n",encoder0.get_cm(),encoder1.get_cm());
-    
-    
+    xbee.printf("ROTATE LEFT parameter: -90,-0,1.45\r\n");
+    manipulate(str_par1,0,1.5);
     xbee.printf("ROTATE STOP\r\n");
-    car.stop();
-    encoder1.reset();
 
     // go for the ID stuff
-    xbee.printf("GO STRAIGHT Parameter: -60 ,-120,3\r\n");
-    car.goStraight(-140,-90);
-    wait(4.5);
+    xbee.printf("GO STRAIGHT Parameter: -130 ,-90,8\r\n");
+    manipulate(str_par1,str_par2,7);
     xbee.printf("STOP\r\n");
-    car.stop();
     
     
-    xbee.printf("turn right: -100\r\n");
-    car.goStraight(0,-100);
-    wait(1.3);
+    xbee.printf("turn right: 0,-100,1.5\r\n");
+    manipulate(0,str_par2,1.5);
     xbee.printf("STOP\r\n");
-    car.stop();
-    encoder1.reset();
+    
 
     char s[21];
     sprintf(s,"image_classification");
     uart.puts(s);
     wait(0.5);
     char recv;
+    int counter = 0;
     while(1){
         if(uart.readable()){
             recv = uart.getc();
             xbee.printf("%c\r\n",recv);
-            xbee.printf("1\r\n");
+            greenLED = 0;
+            break;
+        }
+        counter++;
+        if(counter >= 100000){
+            xbee.printf("I didn't make it \r\n");
             break;
         }
     }
+    
     // reverse parking
-    xbee.printf("reverse right 0 100 1.3");
-    car.goStraight(0,100);
-    wait(1.3);
+    xbee.printf("reverse right 0 140 1.5");
+    manipulate(0,-1*str_par2,1.4);
     xbee.printf("STOP\r\n");
-    car.stop();
-
-    xbee.printf("back 90 120 3");
-    car.goStraight(90,120);
-    wait(3.0);
-    xbee.printf("STOP\r\n");
-    car.stop();
-
-    xbee.printf("reverse left 100 0 1.3");
-    car.goStraight(100,0);
-    wait(1.3);
-    xbee.printf("STOP\r\n");
-    car.stop();
 
     xbee.printf("back 90 120 2");
-    car.goStraight(90,120);
-    wait(1.5);
+    manipulate(-1*str_par2,-1*str_par1,3);
     xbee.printf("STOP\r\n");
-    car.stop();
+
+    xbee.printf("reverse left 100 0 1.6");
+    manipulate(-1*str_par1,0,1.4);
+    xbee.printf("STOP\r\n");
+
+    xbee.printf("back 90 120 1.5");
+    manipulate(-1*str_par1,-1*str_par2,1.5);
+    xbee.printf("STOP\r\n");
 
     xbee.printf("halt");
     wait(3.0);
 
-    xbee.printf("GO STRAIGHT Parametr: -120 ,-90,1\r\n");    car.goStraight(-120,-90);
-    wait(1.5);
-    xbee.prntf("STOP\r\n");
-    car.stop();
+    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,1.5\r\n");    
+    manipulate(-120,-90,1.5);
+    xbee.printf("STOP\r\n");
 
-    xbee.printf("turn right: -100 , 2.6\r\n");
+    xbee.printf("U turn right: -10,-100 , 3.3\r\n");
+    manipulate(-20,-100,3.5);
+    xbee.printf("STOP\r\n");
+
+    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,6\r\n");
+    manipulate(str_par1,str_par2,8);
+    xbee.printf("STOP\r\n");
+
+// ////////// MISSION 2 ///////////////////
+
+    xbee.printf("turn right: -100 , 1.5\r\n");
     car.goStraight(0,-100);
-    wait(2.6);
+    wait(1.5);
     xbee.printf("STOP\r\n");
     car.stop();
 
     xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
-    car.goStraight(-120,-90);
-    wait(4.0);
+    manipulate(str_par1,str_par2,1);
     xbee.printf("STOP\r\n");
-    car.stop();
-
-// ////////// MISSION 2 ///////////////////
-
-    xbee.printf("turn right: -100 , 1.3\r\n");
+    
+    xbee.printf("turn right: -100 , 1.4\r\n");
     car.goStraight(0,-100);
-    wait(1.3);
+    wait(1.4);
     xbee.printf("STOP\r\n");
     car.stop();
-    /*
+
+    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
+    manipulate(str_par1,str_par2,1);
+    xbee.printf("STOP\r\n");
+
+    wait(5.0);
+    
     int find = 0;
     int loop = 0;
     int i;
-    while ((find == 0) && (loop < 3)) {
-        float object[5] ={0};
-        for (i = 0; i < 5; i++) {
-            encoder1.reset();
-            encoder0.reset();
-            car.goStraight(100);
-            while(encoder1.get_cm()<45&&encoder0.get_cm()<45) wait_ms(50);
-            car.stop();
-            encoder1.reset();
-            encoder0.reset();
-            car.turn(100,0.1);
-            while(encoder1.get_cm()<10.7*2*PI/4&&encoder0.get_cm()<10.7*2*PI/4) wait_ms(50);
-            car.stop();
-            object[i] = ping1;
-            encoder1.reset();
-            encoder0.reset();
-            //car.back(100,0.1);
-            while(encoder1.get_cm()<10.7*2*PI/4&&encoder0.get_cm()<10.7*2*PI/4) wait_ms(50);
-            car.stop();
-        }
+
+    float object[5] ={0};
+    
+    //xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
+    manipulate(str_par1,-1*str_par2,0.5);
+    xbee.printf("STOP\r\n");    
+
+    for (i = 0; i < 5; i++) {
+        object[i] = ping1;
+        xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
+        manipulate(-1*str_par1,str_par2,0.25);
+        xbee.printf("STOP\r\n");
+        wait(1);
     }
-    */
-    xbee.printf("end\r\n");
+    manipulate(-1*str_par1,str_par2,0.5);
+    xbee.printf("STOP\r\n");    
+
+
+    
+   xbee.printf("BACK Parameter: -120 ,-90,\r\n");
+   manipulate(-1*str_par2,-1*str_par2,2);
+   xbee.printf("STOP\r\n");
+
+   xbee.printf("reverse right 0 140 1.5");
+   manipulate(0,-1*str_par2,1.4);
+   xbee.printf("STOP\r\n");
+
+   xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
+   manipulate(str_par1,str_par2,6);
+   xbee.printf("STOP\r\n");
+
+   xbee.printf("RIGHT Parameter: -120 ,-90,4\r\n");
+   manipulate(0,str_par2,1.4);
+   xbee.printf("STOP\r\n");
+
+   xbee.printf("GO STRAIGHT Parameter: -120 ,-90,8\r\n");
+   manipulate(str_par1,str_par2,8);
+   xbee.printf("STOP\r\n");
+
+   xbee.printf("end\r\n");
 
 }
