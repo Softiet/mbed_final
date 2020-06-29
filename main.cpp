@@ -43,7 +43,7 @@ void status_print(){
 }
 
 int str_par1 = -80;
-int str_par2 = -70;
+int str_par2 = -65;
 
 int main() {
     redLED = 1;
@@ -95,12 +95,12 @@ int main() {
 
     // go for the ID stuff
     xbee.printf("GO STRAIGHT Parameter: -130 ,-90,8\r\n");
-    manipulate(str_par1,str_par2,7);
+    manipulate(str_par1,str_par2,6.5);
     xbee.printf("STOP\r\n");
     
     
     xbee.printf("turn right: 0,-100,1.5\r\n");
-    manipulate(0,str_par2,1.5);
+    manipulate(0,str_par2+20,1.5);
     xbee.printf("STOP\r\n");
     
 
@@ -151,7 +151,7 @@ int main() {
     xbee.printf("STOP\r\n");
 
     xbee.printf("U turn right: -10,-100 , 3.3\r\n");
-    manipulate(-20,-100,3.5);
+    manipulate(-10,-100,3.5);
     xbee.printf("STOP\r\n");
 
     xbee.printf("GO STRAIGHT Parameter: -120 ,-90,6\r\n");
@@ -229,7 +229,7 @@ int main() {
    xbee.printf("STOP\r\n");
 
    xbee.printf("GO STRAIGHT Parameter: -120 ,-90,8\r\n");
-   manipulate(str_par1,str_par2,8);
+   manipulate(str_par1,str_par2,10);
    xbee.printf("STOP\r\n");
 
    xbee.printf("end\r\n");
