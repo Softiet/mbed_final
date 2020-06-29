@@ -41,9 +41,15 @@ mqttc.connect(host, port=1883, keepalive=60)
 mqttc.subscribe(topic, 0)
 
 print("ALL SYSTEM GO")
+f = open("log.txt","w+")
+f.close()
 while True:
     line = s.readline()
-    print(line)
+    f = open("log.txt","a+")
+    f.write(line.decode("UTF-8") + "\n")
+    f.close()
+    print(line.decode("UTF-8"))
     mqttc.publish(topic, line)
-    if line == "End":
+    if line == "end":
+        f.close()
         break

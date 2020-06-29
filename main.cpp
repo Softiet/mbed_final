@@ -39,7 +39,7 @@ Thread t;
 
 int status;
 void status_print(){
-    xbee.printf("hello I've been sending cause i can\r\n");
+    xbee.printf("hello! I've been sending this every second because I can.\r\n");
 }
 
 int str_par1 = -80;
@@ -89,7 +89,7 @@ int main() {
     car.stop();
     */
 
-    xbee.printf("ROTATE LEFT parameter: -90,-0,1.45\r\n");
+    //xbee.printf("ROTATE LEFT parameter: -90,-0,1.45\r\n");
     manipulate(str_par1,0,1.5);
     xbee.printf("ROTATE STOP\r\n");
 
@@ -113,15 +113,17 @@ int main() {
     while(1){
         if(uart.readable()){
             recv = uart.getc();
-            xbee.printf("%c\r\n",recv);
+            xbee.printf("ANSWER is %c\r\n",recv);
             greenLED = 0;
             break;
         }
+        /*
         counter++;
         if(counter >= 100000){
-            xbee.printf("I didn't make it \r\n");
+            xbee.printf("I didn't make it,sorry... \r\n");
             break;
         }
+        */
     }
     
     // reverse parking
@@ -155,7 +157,7 @@ int main() {
     xbee.printf("GO STRAIGHT Parameter: -120 ,-90,6\r\n");
     manipulate(str_par1,str_par2,8);
     xbee.printf("STOP\r\n");
-
+    xbee.printf("MISSION 1 END\r\n");
 // ////////// MISSION 2 ///////////////////
 
     xbee.printf("turn right: -100 , 1.5\r\n");
@@ -187,17 +189,25 @@ int main() {
     float object[5] ={0};
     
     //xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
-    manipulate(str_par1,-1*str_par2,0.5);
+    manipulate(str_par1,-1*str_par2,0.2);
     xbee.printf("STOP\r\n");    
 
     for (i = 0; i < 5; i++) {
         object[i] = ping1;
-        xbee.printf("GO STRAIGHT Parameter: -120 ,-90,4\r\n");
-        manipulate(-1*str_par1,str_par2,0.25);
+        manipulate(-1*str_par1,str_par2,0.1);
         xbee.printf("STOP\r\n");
         wait(1);
     }
-    manipulate(-1*str_par1,str_par2,0.5);
+    manipulate(-1*str_par1,str_par2,0.2);
+    if(object[2] > object[1] && object[2] >object[3]){
+        xbee.printf("V stuff \r\n");
+    }
+    else if(object[2] < object[1] && object[2] < object[3]){
+        xbee.printf("square \r\n");
+    }
+    else if(object[0] < object[1] && object[1]< object[2]&& object[2]< object[3]&& object[3]< object[4]){
+        xbee.printf("triangle\r\n");
+    }
     xbee.printf("STOP\r\n");    
 
 
